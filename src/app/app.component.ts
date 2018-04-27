@@ -13,8 +13,8 @@ import * as L from 'leaflet';
 // Implémenter OnInit
 export class AppComponent implements OnInit {
 
-  //injection
-  constructor(private http: HttpClient){}
+  // injection
+  constructor(private http: HttpClient) {}
 
 // Fonction d'initialisation du composant.
 ngOnInit() {
@@ -25,16 +25,16 @@ ngOnInit() {
     attribution: 'Sample Map'
   }).addTo(theMap);
 
-   var greenIcon = L.icon({
+   const greenIcon = L.icon({
             iconUrl: 'assets/beer.png',
             iconSize: [38, 38] // size of the icon
   });
 
   this.http.get('http://localhost:5000/api/AZObs').subscribe((data: any) => {
-    
+
     data.forEach(observation => {
-       L.marker([observation.geo.longitude, observation.geo.latitude],{icon: greenIcon}).addTo(theMap);
+       L.marker([observation.geo.longitude, observation.geo.latitude], {icon: greenIcon}).addTo(theMap);
     });
-  });  
+  });
 }
 }
